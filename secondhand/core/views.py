@@ -1,15 +1,16 @@
 from django.shortcuts import render, redirect
 
 from item.models import Category, Item
-from .forms import SingupForm
+
+from .forms import SignupForm
 
 def index(request):
     items = Item.objects.filter(is_sold=False)[0:6]
     categories = Category.objects.all()
 
     return render(request, 'core/index.html', {
-        'categories':categories,
-        'items':items,
+        'categories': categories,
+        'items': items,
     })
 
 def contact(request):
@@ -17,13 +18,14 @@ def contact(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = SingupForm(request.POST)
+        form = SignupForm(request.POST)
 
         if form.is_valid():
             form.save()
 
             return redirect('/login/')
-    form = SingupForm()
+    else:
+        form = SignupForm()
 
     return render(request, 'core/signup.html', {
         'form': form

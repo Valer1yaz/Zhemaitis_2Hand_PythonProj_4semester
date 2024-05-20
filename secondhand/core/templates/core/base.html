@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html>
     <head>
@@ -7,24 +7,23 @@
 
         <script src="https://cdn.tailwindcss.com"></script>
 
-        <title>{% block title %}{% endblock %} | 2Hand</title>
+        <title>{% block title %}{% endblock %} | Секонд МИНИ</title>
     </head>
 
     <body>
-        <nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200">
-            <a href="/" class="text-xl font-semibold">2Hand</a>
+        <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-200">
+            <a href="/" class="text-xl font-semibold">Секонд МИНИ</a>
 
             <div class="space-x-6">
-                <a href="{% url 'item:new' %}" class="text-lg font-semibold hover:text-gray-500">Добавить товар</a>
-                <a href="#" class="text-lg font-semibold hover:text-gray-500">Поиск</a>
+                <a href="{% url 'item:new' %}" class="text-lg font-semibold hover:text-gray-500">Выставить новый товар</a>
+                <a href="{% url 'item:items' %}" class="text-lg font-semibold hover:text-gray-500">Поиск</a>
 
                 {% if request.user.is_authenticated %}
-                <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Сообщения</a>
-                <a href="{% url 'core:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Дэшборд</a>
-                
+                    <a href="{% url 'conversation:inbox' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Сообщения</a>
+                    <a href="{% url 'dashboard:index' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Мои товары</a>
                 {% else %}
-                <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Зарегаться</a>
-                <a href="{% url 'core:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Войти</a>
+                    <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Регистрация</a>
+                    <a href="{% url 'core:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Вход</a>
                 {% endif %}
             </div>
         </nav>
@@ -34,19 +33,18 @@
             {% endblock %}
         </div>
 
-        
         <footer class="py-6 px-6 flex justify-between bg-gray-800">
             <div class="w-2/3 pr-10">
-                <h3 class="mb-5 font-semibold text-gray-400">О нас</h3>
-                <p class="text-lg text-gray-500">blablablablablablablablablablabl. ablablablablablablablablablablablablablablablablablablabla. blablablablablablablablabla</p>
+                <h3 class="mb-5 font-semibold text-gray-400">О магазине</h3>
+
+                <p class="text-lg text-gray-500">Мы маленький магазин БУ товаров, который держится на энтузиазме.</p>
             </div>
 
             <div class="w-1/3">
                 <h3 class="mb-5 font-semibold text-gray-400">Полезные ссылки</h3>
-                <ul class="">
-                    <li><a href="core:contact" class="text-lg bg-teal-500 hover:text-teal-700">Контакты</a></li>
-                    <li><a href="g" class="text-lg bg-teal-500 hover:text-teal-700">Политика приватности</a></li>
-                    <li><a href="g" class="text-lg bg-teal-500 hover:text-teal-700">Правила пользования</a></li>
+
+                <ul class="space-y-2">
+                    <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-500 hover:text-teal-700">Контакты</a></li>
                 </ul>
             </div>
         </footer>

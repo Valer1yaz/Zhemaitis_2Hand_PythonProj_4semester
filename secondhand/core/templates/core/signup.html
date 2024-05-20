@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Регистрация{% endblock %}
+{% block title %}Sign up{% endblock %}
 
 {% block content %}
 <div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
@@ -8,8 +8,6 @@
 
     <form method="post" action=".">
         {% csrf_token %}
-
-        {{ form.non_field_erros }}
 
         <div class="mb-3">
             <label class="inline-block mb-2">Имя пользователя</label><br>
@@ -33,9 +31,11 @@
 
         {% if form.errors or form.non_field_errors %}
             <div class="mb-3 p-6 bg-red-100 rounded-xl">
-            {% for field in form %}
-                {{ field.errors }}
-            {% endfor %}
+                {% for field in form %}
+                    {{ field.errors }}
+                {% endfor %}
+
+                {{ form.non_field_errors }}
             </div>
         {% endif %}
 
